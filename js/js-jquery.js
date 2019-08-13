@@ -5,7 +5,7 @@ $('.btn-add-row').on('click', () => {
     const $newRow = $lastRow.clone();
 
     $newRow.find('input').val('');
-    $newRow.find('td:last').text('$0.00');
+    $newRow.find('td:last').text('£ 0.00');
     $newRow.insertAfter($lastRow);
 
     $newRow.find('input:first').focus();
