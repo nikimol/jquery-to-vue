@@ -1,4 +1,4 @@
-# jquery-to-vue
+# jQuery to Vue2
 A test of converting a template HTML invoice from jQuery to Vue2
 
 ##What I found
