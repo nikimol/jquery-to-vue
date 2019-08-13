@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice: jQuery to Vue2</title>
+    <link href="css/invoice.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="img/supplier-ltd-logo.png" alt="Supplier Ltd Logo" style="width:100%; max-width:300px;">
+                            </td>
+                            <td>
+                                <strong>Invoice #</strong>: 123<br />
+                                <strong>Invoice Date</strong>: 1 January 2019<br />
+                                <strong>Payment Due</strong>: 1 February 2019
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="invoice-to">
+                                <strong>To:</strong><br />
+                                Company Name Ltd<br />
+                                12345 High Street<br />
+                                London
+                            </td>
+                            <td>
+                                <strong>From:</strong><br />
+                                Supplier Ltd.<br />
+                                John Doe<br />
+                                john@example.com
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="heading">
+                <td>Payment Method</td>
+                <td>Cheque No</td>
+            </tr>
+            
+            <tr class="details">
+                <td>Cheque</td>
+                <td>1000397</td>
+            </tr>
+        
+            <tr class="heading">
+                <td class="first">Item</td>
+                <td>Price</td>
+                <td>Qty</td>
+                <td>Total</td>
+            </tr>
+
+            <tr class="item" v-for="item in items">
+                <td class="first"><input v-model="item.description" /></td>
+                <td>&pound;  <input type="number" v-model="item.price" /></td>
+                <td><input type="number" v-model="item.quantity" /></td>
+                <td>&pound; {{ item.price * item.quantity | currency }}</td>
+            </tr>
+              
+            <tr>
+                <td colspan="4">
+                    <button class="button btn-add-row" @click="addRow">Add row</button>
+                </td>
+            </tr>
+            
+            <tr class="total">
+                <td colspan="2"></td>
+                <td colspan="2">Total: £ {{ total | currency }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="js/js-vue.js"></script>
+</body>
+</html>
