@@ -10,7 +10,7 @@
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
             <tr class="top">
-                <td colspan="2">
+                <td colspan="4">
                     <table>
                         <tr>
                             <td class="title">
@@ -41,13 +41,13 @@
             </tr>
             
             <tr class="heading">
-                <td>Payment Method</td>
-                <td>Cheque No</td>
+                <td colspan="2">Payment Method</td>
+                <td colspan="2">Cheque No</td>
             </tr>
             
             <tr class="details">
-                <td>Cheque</td>
-                <td>1000397</td>
+                <td colspan="2">Cheque</td>
+                <td colspan="2">1000397</td>
             </tr>
         
             <tr class="heading">
@@ -59,7 +59,7 @@
 
             <tr class="item" v-for="item in items">
                 <td class="first"><input v-model="item.description" /></td>
-                <td>&pound;  <input type="number" v-model="item.price" /></td>
+                <td>&pound; <input type="number" v-model="item.price" /></td>
                 <td><input type="number" v-model="item.quantity" /></td>
                 <td>&pound; {{ item.price * item.quantity | currency }}</td>
             </tr>
@@ -74,8 +74,49 @@
                 <td colspan="2"></td>
                 <td colspan="2">Total: £ {{ total | currency }}</td>
             </tr>
+
+            <tr>
+                <td colspan="4">
+                    <a href="index-jquery.html" class="button button-switch">View jQuery Invoice</a>
+                </td>
+            </tr>
         </table>
     </div>
+
+    <div class="code-container">
+        <pre>
+            <code>
+    const app = new Vue({
+        el: "table",
+        data: {
+            items: [
+                { description: "Website design", quantity: 1, price: 300 },
+                { description: "Website hosting", quantity: 1, price: 75 },
+                { description: "Domain names", quantity: 1, price: 10 }
+            ]
+        },
+        computed: {
+            total() {
+                return this.items.reduce(
+                    (acc, item) => acc + item.price * item.quantity,
+                    0
+                );
+            }
+        },
+        methods: {
+            addRow() {
+                this.items.push({ description: "", quantity: 1, price: 0 });
+            }
+        },
+        filters: {
+            currency(value) {
+                return value.toFixed(2);
+            }
+        }
+    });
+            </code>
+        </pre>
+    </div> 
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="js/js-vue.js"></script>
